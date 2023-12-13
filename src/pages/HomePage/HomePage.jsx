@@ -15,14 +15,18 @@ import Notification from "../../components/Notification/Notification";
 const HomePage = () => {
 
   const [NextEvents, setNextEvents] = useState([]); 
+  const [previousEvents, setPreviousEvents] = useState([]);
   const [notifyUser, setNotifyUser] = useState();
 
   useEffect(() => {
     async function getNextEvents() {
       try {
         const promise = await api.get(`/Evento/ListarProximos`);
+        const promise2 = await api.get(`/Evento/ListarAnteriores`)
         const dados = await promise.data;
+        const dados2 = await promise2.data;
 
+        setPreviousEvents(dados2)
         setNextEvents(dados);
       } catch (error) {
         setNotifyUser({
@@ -52,6 +56,31 @@ const HomePage = () => {
 
             {
               NextEvents.map((e) => {
+                return (
+                  <NextEvent 
+                    key={e.idEvento}
+                    title={e.nomeEvento}
+                    description={e.descricao}
+                    eventDate={dateFormatDbToView(e.dataEvento)}
+                    idEvent={e.idEvento}
+                  />
+                );
+              })
+            }
+            
+          </div>
+        </Container>
+      </section>
+
+      {/* EVENTOS ANTERIORES */}
+      <section className="proximos-eventos">
+        <Container>
+          <Title titleText={"Eventos Anteriores"} />
+
+          <div className="events-box">
+
+            {
+              previousEvents.map((e) => {
                 return (
                   <NextEvent 
                     key={e.idEvento}
