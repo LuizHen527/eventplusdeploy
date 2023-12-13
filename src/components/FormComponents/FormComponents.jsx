@@ -62,7 +62,7 @@ export const Select = ({
         value={defaultValue}
         >
 
-            <option value={0}>Selecione</option>
+            <option defaultValue value={""}>Selecione</option>
             {options.map((o) => {
                 return(
                     <option key={o.value} value={o.value}>{o.text}</option>

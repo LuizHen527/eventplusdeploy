@@ -32,6 +32,7 @@ const EventosAlunoPage = () => {
   const [comentario, setComentario] = useState("");
   const [frmData, setFrmData] = useState({});
   const [novoComentario, setNovoComentario] = useState("");
+  const [idComentario, setIdComentario] = useState("");
 
   // recupera os dados globais do usuário
   const { userData, setUserData } = useContext(UserContext);
@@ -42,7 +43,7 @@ const EventosAlunoPage = () => {
 
 
     loadEventsType();
-  }, []);
+  }, [tipoEvento, userData.userId]);
 
   async function loadEventsType(){
     setShowSpinner(true);
@@ -123,13 +124,14 @@ const EventosAlunoPage = () => {
 
       console.log('Comentario:');
       setComentario(promise.data.descricao);
+      setIdComentario(promise.data.idComentarioEvento);
     } catch (error) {
       console.log(error);
     }
   };
 
   async function postMyCommentary () {
-    alert('Postar')
+    
     try {
       const promise = await api.post(CommentsEventsResource, {
         descricao: novoComentario.descricao,
@@ -152,8 +154,19 @@ const EventosAlunoPage = () => {
     console.log(idEvent);
   };
 
-  const commentaryRemove = () => {
-    alert("Remover o comentário");
+  async function commentaryRemove () {
+    console.log("Remover o comentário");
+
+    try {
+      const promise = await api.delete(`${CommentsEventsResource}/${idComentario}`)
+
+      console.log(promise.status);
+      console.log("deletado com sucesso");
+
+      loadMyCommentary();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   async function handleConnect(eventId, whatIsTheFunction, presencaId = null) {

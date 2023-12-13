@@ -27,7 +27,7 @@ const EventosPage = () => {
         "nomeEvento": "",
         "descricao": "",
         "idTipoEvento": "",
-        "idInstituicao": "22a2dfe6-ba24-4229-9489-d3c7a8cba57a"
+        "idInstituicao": "9f2836ec-3e3a-4937-98e3-8b60129fbcca"
     });
     const [idEvento, setIdEvento] = useState(null); 
     const [frmEditData, setFrmEditData] = useState([])
