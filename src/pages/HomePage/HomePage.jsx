@@ -11,6 +11,8 @@ import axios from "axios";
 import { dateFormatDbToView } from "../../Utils/stringFunctions";
 import api from "../../Services/Services";
 import Notification from "../../components/Notification/Notification";
+import PreviousEvent from "../../components/PreviousEvent/PreviousEvent";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
 
@@ -41,6 +43,8 @@ const HomePage = () => {
 
     getNextEvents();
   }, []);
+
+  const e = { idEvento : Math.random()}
 
   return (
     <MainContent>
@@ -82,7 +86,7 @@ const HomePage = () => {
             {
               previousEvents.map((e) => {
                 return (
-                  <NextEvent 
+                  <PreviousEvent
                     key={e.idEvento}
                     title={e.nomeEvento}
                     description={e.descricao}

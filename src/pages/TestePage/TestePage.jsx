@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 //import Header from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
@@ -15,14 +16,21 @@ const TestePage = () => {
 
     const [count, setCount] = useState(0);
     const[calculation, setCalculation] = useState(0);
+    const {idEvento} = useParams();
 
     useEffect(() => {
+        alert("useEffect, fazendo get do evento" + idEvento);
         setCalculation( count * 2 );
     });
 
+    
+
     return (
+        
         <div>
             <h1>Pagina de POCs - Prova de conceitos</h1>
+
+            
 
             <p>Count: {count}</p>
 

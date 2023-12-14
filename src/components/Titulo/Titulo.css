@@ -11,6 +11,7 @@
     text-align: center;
     align-self: flex-start; /* alinhamento isolado */
     /* border: 1px solid red; */
+    margin: 43px auto 0 auto;
 }
 
 .title__underscore {

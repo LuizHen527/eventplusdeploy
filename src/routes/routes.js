@@ -12,6 +12,7 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer'
 import { PrivateRoute } from './PrivateRoute';
 import EventosAlunoPage from '../pages/EventosAlunoPage/EventosAlunoPage';
+import DetalhesEventoPage from '../pages/DetalhesEventoPage/DetalhesEventoPage';
 
 const Rotas = () => {
     return (
@@ -47,7 +48,8 @@ const Rotas = () => {
 
 
                 <Route element={ <LoginPage />} path={"/login"} exact />
-                <Route element={ <TestePage />} path={"/testes"} exact />
+                <Route element={ <TestePage />} path={"/testes/:idEvento"} exact />
+                <Route element={ <DetalhesEventoPage />} path={"/detalhes-evento/:idEvento"} exact />
             </Routes>
             <Footer/>
         </BrowserRouter>
